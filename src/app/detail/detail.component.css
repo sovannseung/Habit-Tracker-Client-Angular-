@@ -1,0 +1,16 @@
+ul {
+  list-style:none;
+  padding: 0px;
+}
+
+ul li {
+  border-top: solid 1px #ced4da;
+  line-height: 40px;
+}
+
+ul li span {
+  display: block;
+  float: right;
+  margin-top: 10px;
+}
+

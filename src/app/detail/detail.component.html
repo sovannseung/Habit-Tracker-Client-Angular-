@@ -1,0 +1,43 @@
+  <app-dashboard-header></app-dashboard-header>
+  <section class="body">
+    <h3> {{tracker_record.title}} </h3>
+    <select class="form-control select" id="progress" (change)="onChange($event.target.value)">
+        <option value="daily">Daily Progress</option>
+        <option value="weekly">Weekly Progress</option>
+        <option value="monthly">Monthly Progress</option>
+        <option value="yearly">Yearly Progress</option>
+      </select>
+    <div class="content" [ngClass]="{ 'completed': tracker_record.stats.daily.percent >= 100}">
+      <p class="text-right" style="margin-top: 30px">
+          <span *ngIf="mystate==='daily'"> {{tracker_record.stats.daily.percent}}% </span>
+          <span *ngIf="mystate==='weekly'"> {{tracker_record.stats.weekly.percent}}% </span>
+          <span *ngIf="mystate==='monthly'"> {{tracker_record.stats.monthly.percent}}% </span>
+          <span *ngIf="mystate==='yearly'"> {{tracker_record.stats.yearly.percent}}% </span>
+      </p>
+      <div class="progress" style="height: 8px;">
+          <div *ngIf="mystate==='daily'" class="progress-bar bg-success" role="progressbar" [appProgress]=tracker_record.stats.daily.percent  aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+          <div *ngIf="mystate==='weekly'" class="progress-bar bg-success" role="progressbar" [appProgress]=tracker_record.stats.weekly.percent aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+          <div *ngIf="mystate==='monthly'" class="progress-bar bg-success" role="progressbar" [appProgress]=tracker_record.stats.monthly.percent aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+          <div *ngIf="mystate==='yearly'" class="progress-bar bg-success" role="progressbar" [appProgress]=tracker_record.stats.yearly.percent aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+      <button type="button" class="btn btn-primary btn-block" (click)="onCheckin()" style="margin-top: 10px;">Check in</button>
+      <p> Check in </p>
+      <ul>
+        <li>
+          Successful <span class="badge badge-pill badge-success">{{tracker_record.stats.weekly.checks}}</span>
+        </li>
+        <li>
+          Missed <span class="badge badge-pill badge-danger">{{tracker_record.stats.weekly.missed}}</span>
+        </li>
+        <li>
+          To complete this week <span class="badge badge-pill badge-primary">{{tracker_record.stats.weekly.rest}}</span>
+        </li>
+      </ul>
+
+      <a [routerLink]="['/trackeredit/'+ tracker_record.id]" class="btn btn-outline-dark btn-block"> Edit </a>
+    </div>
+
+  </section>
+
+
+

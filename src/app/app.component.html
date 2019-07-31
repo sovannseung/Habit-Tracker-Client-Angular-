@@ -1,0 +1,23 @@
+<div class="top-nav d-flex flex-column flex-md-row fixed-top align-items-center p-3 px-md-4 mb-3 border-bottom shadow-lg bg-white">
+  <h5 class="my-0 mr-md-auto font-weight-normal">Habits Tracker</h5>
+  <nav class="my-2 my-md-0 mr-md-3" *ngIf="currentUser">
+    <a class="p-2 text-dark" [routerLink]="['dashboard']" (click)="setTitle('Dashboard Tracker')">Dashboard</a>
+    <a class="p-2 text-dark" href="#">Account</a>
+    <a class="p-2 text-dark" href="#" (click)="logout()">Log out</a>
+  </nav>
+  <ng-container  *ngIf="!currentUser">
+    <a class="p-2 text-dark" routerLink="/login">Log in</a>
+    <a class="btn btn-outline-primary" routerLink="/signup">Sign up</a>
+  </ng-container>
+ </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-md">
+      <div class="app-container">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>
+
